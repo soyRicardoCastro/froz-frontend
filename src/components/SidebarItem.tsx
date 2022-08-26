@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 
 interface Props {
   body: {
@@ -19,4 +19,4 @@ export const SidebarItem = ({ label, path, icon }: Props['body']) => (
     {icon}
     <span className='hidden md:block'>{label}</span>
   </NavLink>
-);
+)

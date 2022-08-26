@@ -35,11 +35,11 @@ export const registerSchema = object({
     required_error: 'Age is required'
   }),
   phone: string({
-  required_error: 'Phone is required'
-})
+    required_error: 'Phone is required'
+  })
 }).refine((data) => data.password === data.passwordConfirmation, {
   message: 'Passwords do not match',
-  path: ['passwordConfirmation'],
+  path: ['passwordConfirmation']
 })
 
 export type LoginInput = TypeOf<typeof loginSchema>

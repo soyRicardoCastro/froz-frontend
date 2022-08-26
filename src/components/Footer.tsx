@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function Footer() {
+function Footer () {
   return (
     <footer className='w-full mt-28 px-6 py-2 rounded-lg shadow bg-slate-800 md:flex md:items-center md:justify-between'>
       <div>

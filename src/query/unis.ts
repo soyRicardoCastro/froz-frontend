@@ -3,10 +3,10 @@ import { getUnis, getUni } from '../services/unis'
 
 const key = 'unis'
 
-export function useUnis() {
+export function useUnis () {
   return useQuery([key], getUnis)
 }
 
-export function useUni(id: string) {
-  return useQuery([key, id], () => getUni(id))
+export function useUni (id: string) {
+  return useQuery([key, id], async () => await getUni(id))
 }

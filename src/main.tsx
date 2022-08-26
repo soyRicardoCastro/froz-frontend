@@ -1,14 +1,13 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { NextUIProvider, createTheme } from '@nextui-org/react'
-import { BrowserRouter, HashRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import App from './App'
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
 
 const theme = createTheme({
-  type: 'dark',
+  type: 'dark'
 })
 
 const queryClient = new QueryClient()

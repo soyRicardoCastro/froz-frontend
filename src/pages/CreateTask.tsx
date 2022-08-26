@@ -6,15 +6,15 @@ import { taskSchema, TaskInput } from '../schema/task.schema'
 import { toast } from 'react-toastify'
 import axios from '../services/axios'
 
-function CreateTask() {
+function CreateTask () {
   const [createTaskError, setCreateTaskError] = useState<any | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = useForm<TaskInput>({
-    resolver: zodResolver(taskSchema),
+    resolver: zodResolver(taskSchema)
   })
 
   const onSubmit = async (values: TaskInput) => {
@@ -34,53 +34,55 @@ function CreateTask() {
   }
 
   return (
-    <Layout title="Create Task" category="Admin">
+    <Layout title='Create Task' category='Admin'>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center mx-auto max-w-sm gap-3"
+        className='flex flex-col items-center justify-center mx-auto max-w-sm gap-3'
       >
         {createTaskError && (
-          <p className="text-red-500 text-sm text-center">{createTaskError}</p>
+          <p className='text-red-500 text-sm text-center'>{createTaskError}</p>
         )}
         <input
-          className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
-          placeholder="Task Name"
-          type="text"
+          className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+          placeholder='Task Name'
+          type='text'
           {...register('name')}
         />
-        <p className="text-red-500 text-sm text-center">
+        <p className='text-red-500 text-sm text-center'>
           {errors.name?.message}
         </p>
 
         <input
-          className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
-          placeholder="Short description"
-          type="text"
+          className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+          placeholder='Short description'
+          type='text'
           {...register('short')}
         />
-        <p className="text-red-500 text-sm text-center">
+        <p className='text-red-500 text-sm text-center'>
           {errors.short?.message}
         </p>
         <textarea
-          className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none h-[150px]"
-          placeholder="Task Description"
+          className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none h-[150px]'
+          placeholder='Task Description'
           {...register('description')}
         />
-        <p className="text-red-500 text-sm text-center">
+        <p className='text-red-500 text-sm text-center'>
           {errors.description?.message}
         </p>
-        {loading ? (
-          <button disabled className="py-3 px-5 bg-lime-300 rounded-full">
-            Loading...
-          </button>
-        ) : (
-          <button
-            type="submit"
-            className="py-3 px-5 bg-lime-500 rounded-full hover:bg-lime-600 transition"
-          >
-            Create Task
-          </button>
-        )}
+        {loading
+          ? (
+            <button disabled className='py-3 px-5 bg-lime-300 rounded-full'>
+              Loading...
+            </button>
+            )
+          : (
+            <button
+              type='submit'
+              className='py-3 px-5 bg-lime-500 rounded-full hover:bg-lime-600 transition'
+            >
+              Create Task
+            </button>
+            )}
       </form>
     </Layout>
   )

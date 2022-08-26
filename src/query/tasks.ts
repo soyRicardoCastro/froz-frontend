@@ -3,10 +3,10 @@ import { getTasks, getTask } from '../services/tasks'
 
 const key = 'tasks'
 
-export function useTasks() {
+export function useTasks () {
   return useQuery([key], getTasks)
 }
 
-export function useTask(id: string) {
-  return useQuery([key, id], () => getTask(id))
+export function useTask (id: string) {
+  return useQuery([key, id], async () => await getTask(id))
 }

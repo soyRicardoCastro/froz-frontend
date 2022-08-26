@@ -6,20 +6,20 @@ import { registerSchema, RegisterUserInput } from '../schema/auth.schema'
 import axios from '../services/axios'
 import logo from '../assets/logo.png'
 
-function Register() {
+function Register () {
   const [registerError, setRegisterError] = useState<any | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = useForm<RegisterUserInput>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema)
   })
 
   const nav = useNavigate()
 
-  async function onSubmit(values: RegisterUserInput) {
+  async function onSubmit (values: RegisterUserInput) {
     try {
       setLoading(true)
       await axios.post('/api/users', values)
@@ -36,36 +36,36 @@ function Register() {
   }
 
   return (
-    <main className="relative min-h-screen w-full bg-slate-800">
-      <div className="p-6">
-        <header className="flex w-full justify-end">
+    <main className='relative min-h-screen w-full bg-slate-800'>
+      <div className='p-6'>
+        <header className='flex w-full justify-end'>
           <div>
             <Link
-              to="/login"
-              className="rounded-2xl border-b-2 border-b-lime-300 bg-lime-400 py-3 px-4 font-bold text-white ring-2 ring-lime-300 hover:bg-lime-600 active:translate-y-[0.125rem] active:border-b-lime-200 transition"
+              to='/login'
+              className='rounded-2xl border-b-2 border-b-lime-300 bg-lime-400 py-3 px-4 font-bold text-white ring-2 ring-lime-300 hover:bg-lime-600 active:translate-y-[0.125rem] active:border-b-lime-200 transition'
             >
               LOGIN
             </Link>
           </div>
         </header>
-        <section className="flex flex-col items-center justify-center mx-auto max-w-sm">
-          <img src={logo} alt="Froz logo" className="my-14" />
-          <div className="space-y-4">
-            <h1 className="mb-6 text-4xl font-bold">Create your profile</h1>
+        <section className='flex flex-col items-center justify-center mx-auto max-w-sm'>
+          <img src={logo} alt='Froz logo' className='my-14' />
+          <div className='space-y-4'>
+            <h1 className='mb-6 text-4xl font-bold'>Create your profile</h1>
 
             <p>{registerError}</p>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label htmlFor="email">Email</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='email'>Email</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="email"
-                    id="email"
-                    placeholder="example@mail.com"
-                    autoComplete="off"
+                    type='email'
+                    id='email'
+                    placeholder='example@mail.com'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('email')}
                   />
                 </div>
@@ -73,15 +73,15 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="firstName">First Name</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='firstName'>First Name</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="text"
-                    id="firstName"
-                    placeholder="Jane Ari"
-                    autoComplete="off"
+                    type='text'
+                    id='firstName'
+                    placeholder='Jane Ari'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('firstName')}
                   />
                 </div>
@@ -89,15 +89,15 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="lastName">Last Name</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='lastName'>Last Name</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="text"
-                    id="lastName"
-                    placeholder="Doe Eri"
-                    autoComplete="off"
+                    type='text'
+                    id='lastName'
+                    placeholder='Doe Eri'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('lastName')}
                   />
                 </div>
@@ -105,15 +105,15 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="password">Password</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='password'>Password</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="password"
-                    id="password"
-                    placeholder="******"
-                    autoComplete="off"
+                    type='password'
+                    id='password'
+                    placeholder='******'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('password')}
                   />
                 </div>
@@ -121,17 +121,17 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="passwordConfirmation">
+                <label htmlFor='passwordConfirmation'>
                   Password Confirmation
                 </label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="password"
-                    id="passwordConfirmation"
-                    placeholder="******"
-                    autoComplete="off"
+                    type='password'
+                    id='passwordConfirmation'
+                    placeholder='******'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('passwordConfirmation')}
                   />
                 </div>
@@ -139,15 +139,15 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="age">Age</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='age'>Age</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="text"
-                    id="age"
-                    placeholder="19"
-                    autoComplete="off"
+                    type='text'
+                    id='age'
+                    placeholder='19'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('age')}
                   />
                 </div>
@@ -155,15 +155,15 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="gender">Gender</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='gender'>Gender</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="text"
-                    id="gender"
-                    placeholder="Female"
-                    autoComplete="off"
+                    type='text'
+                    id='gender'
+                    placeholder='Female'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('gender')}
                   />
                 </div>
@@ -171,15 +171,15 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="address">Address</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='address'>Address</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="text"
-                    id="address"
-                    placeholder="Street 121 venecian u."
-                    autoComplete="off"
+                    type='text'
+                    id='address'
+                    placeholder='Street 121 venecian u.'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('address')}
                   />
                 </div>
@@ -187,40 +187,42 @@ function Register() {
               </div>
 
               <div>
-                <label htmlFor="phone">Phone</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
+                <label htmlFor='phone'>Phone</label>
+                <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900'>
                   <input
-                    type="text"
-                    id="phone"
-                    placeholder="+112 3123 4 123"
-                    autoComplete="off"
+                    type='text'
+                    id='phone'
+                    placeholder='+112 3123 4 123'
+                    autoComplete='off'
                     required
-                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
                     {...register('phone')}
                   />
                 </div>
                 <p>{errors.phone?.message}</p>
               </div>
 
-              {loading ? (
-                <button
-                  disabled
-                  className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white my-4"
-                >
-                  Loading...
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white hover:bg-lime-400 active:translate-y-[0.125rem] active:border-b-lime-700 my-4"
-                >
-                  REGISTER
-                </button>
-              )}
+              {loading
+                ? (
+                  <button
+                    disabled
+                    className='w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white my-4'
+                  >
+                    Loading...
+                  </button>
+                  )
+                : (
+                  <button
+                    type='submit'
+                    className='w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white hover:bg-lime-400 active:translate-y-[0.125rem] active:border-b-lime-700 my-4'
+                  >
+                    REGISTER
+                  </button>
+                  )}
             </form>
-            <p className="text-white text-sm">
+            <p className='text-white text-sm'>
               Go to{' '}
-              <Link to="/login" className="text-lime-500 hover:underline">
+              <Link to='/login' className='text-lime-500 hover:underline'>
                 Login Page
               </Link>
             </p>

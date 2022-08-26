@@ -9,18 +9,18 @@ interface Props {
   }
 }
 
-function Input({ type, placeholder, id, label, ...props }: Props['body']) {
+function Input ({ type, placeholder, id, label, ...props }: Props['body']) {
   return (
     <>
       <label htmlFor={id}>{label}</label>
-      <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+      <div className='w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900'>
         <input
           type={type}
           id={id}
           placeholder={placeholder}
-          autoComplete="off"
+          autoComplete='off'
           required
-          className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+          className='my-3 w-full border-none bg-transparent outline-none focus:outline-none'
           {...props}
         />
       </div>

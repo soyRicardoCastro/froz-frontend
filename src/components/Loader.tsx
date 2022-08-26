@@ -8,27 +8,30 @@ interface Props {
   }
 }
 
-function Loader({ isFetching, isLoading, error }: Props['body']) {
-  if (isLoading)
+function Loader ({ isFetching, isLoading, error }: Props['body']) {
+  if (isLoading) {
     return (
-      <Loading className="ml-14" color="success">
+      <Loading className='ml-14' color='success'>
         Loading data...
       </Loading>
     )
-  if (isFetching)
+  }
+  if (isFetching) {
     return (
-      <Loading className="ml-14" color="success">
+      <Loading className='ml-14' color='success'>
         Refreshing data...
       </Loading>
     )
-  if (error)
+  }
+  if (error) {
     return (
-      <h1 className="text-2xl text-red-600 font-bold">
+      <h1 className='text-2xl text-red-600 font-bold'>
         Internal server error :/
       </h1>
     )
+  }
 
-  return <div></div>
+  return <div />
 }
 
 export default Loader

@@ -21,7 +21,7 @@ interface CreateUserForm {
   }
 }
 
-function CreateUser({ role }: Props['body']) {
+function CreateUser ({ role }: Props['body']) {
   const [loading, setLoading] = useState<boolean>(false)
 
   const [user, setUser] = useState<CreateUserForm['body']>({
@@ -31,13 +31,13 @@ function CreateUser({ role }: Props['body']) {
     password: '',
     phone: '',
     gender: '',
-    age: '',
+    age: ''
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -56,7 +56,7 @@ function CreateUser({ role }: Props['body']) {
         password: '',
         phone: '',
         gender: '',
-        age: '',
+        age: ''
       })
     } catch (e: any) {
       toast.error('Internal server error')
@@ -68,77 +68,79 @@ function CreateUser({ role }: Props['body']) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col items-center justify-center mx-auto max-w-sm gap-3"
+      className='flex flex-col items-center justify-center mx-auto max-w-sm gap-3'
     >
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
         value={user.firstName}
-        placeholder="First name"
-        type="text"
-        name="firstName"
+        placeholder='First name'
+        type='text'
+        name='firstName'
         onChange={handleChange}
       />
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
         value={user.lastName}
-        placeholder="Last name"
-        type="text"
-        name="lastName"
+        placeholder='Last name'
+        type='text'
+        name='lastName'
         onChange={handleChange}
       />
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
         value={user.email}
-        placeholder="Email"
-        type="email"
-        name="email"
+        placeholder='Email'
+        type='email'
+        name='email'
         onChange={handleChange}
       />
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
         value={user.password}
-        placeholder="Password"
-        type="password"
-        name="password"
+        placeholder='Password'
+        type='password'
+        name='password'
         onChange={handleChange}
       />
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
-        type="string"
-        placeholder="Phone"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+        type='string'
+        placeholder='Phone'
         value={user.phone}
-        name="phone"
+        name='phone'
         onChange={handleChange}
       />
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
-        type="string"
-        placeholder="Age"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+        type='string'
+        placeholder='Age'
         value={user.age}
-        name="age"
+        name='age'
         onChange={handleChange}
       />
       <input
-        className="w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none"
-        type="string"
-        placeholder="Gender"
+        className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+        type='string'
+        placeholder='Gender'
         value={user.gender}
-        name="gender"
+        name='gender'
         onChange={handleChange}
       />
 
-      {loading ? (
-        <button disabled className="py-3 px-5 bg-lime-300 rounded-full">
-          Loading...
-        </button>
-      ) : (
-        <button
-          type="submit"
-          className="py-3 px-5 bg-lime-500 rounded-full hover:bg-lime-600 transition"
-        >
-          Create User
-        </button>
-      )}
+      {loading
+        ? (
+          <button disabled className='py-3 px-5 bg-lime-300 rounded-full'>
+            Loading...
+          </button>
+          )
+        : (
+          <button
+            type='submit'
+            className='py-3 px-5 bg-lime-500 rounded-full hover:bg-lime-600 transition'
+          >
+            Create User
+          </button>
+          )}
     </form>
   )
 }

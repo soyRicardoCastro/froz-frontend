@@ -3,10 +3,10 @@ import { getUsers, getUser } from '../services/users'
 
 const key = 'users'
 
-export function useUsers() {
+export function useUsers () {
   return useQuery([key], getUsers)
 }
 
-export function useUser(id: string) {
-  return useQuery([key, id], () => getUser(id))
+export function useUser (id: string) {
+  return useQuery([key, id], async () => await getUser(id))
 }

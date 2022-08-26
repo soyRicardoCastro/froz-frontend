@@ -5,7 +5,7 @@ import axios from '../services/axios'
 import { useTask } from '../query'
 import { Layout } from '../components'
 
-function Task() {
+function Task () {
   const params = useParams()
   const id = params.id as string
   const { user } = useStore()
@@ -13,7 +13,7 @@ function Task() {
 
   const { data: task, error, isLoading, isFetching } = useTask(id)
 
-  async function handleClick() {
+  async function handleClick () {
     try {
       toast.info('Sending info...')
       await axios.post(`/api/users/${userId}/task`)
@@ -27,21 +27,21 @@ function Task() {
   return (
     <Layout
       title={task?.name ? task.name : 'Task'}
-      category="Users"
+      category='Users'
       error={error}
       isLoading={isLoading}
       isFetching={isFetching}
     >
-      <div className="w-[90%] mx-auto h-full flex flex-col items-center justify-center">
-        <div className="w-[600px] flex flex-wrap flex-col items-center justify-center">
-          <h3 className="text-md font-semibold text-gray-200">
+      <div className='w-[90%] mx-auto h-full flex flex-col items-center justify-center'>
+        <div className='w-[600px] flex flex-wrap flex-col items-center justify-center'>
+          <h3 className='text-md font-semibold text-gray-200'>
             Short Description: {task?.short}
           </h3>
           <br />
-          <p className="m-5 w-[90%]">Full Task: {task?.description}</p>
+          <p className='m-5 w-[90%]'>Full Task: {task?.description}</p>
         </div>
         <button
-          className="px-5 py-2 my-10 rounded-full bg-lime-600 hover:bg-lime-200 transition"
+          className='px-5 py-2 my-10 rounded-full bg-lime-600 hover:bg-lime-200 transition'
           onClick={handleClick}
         >
           Done

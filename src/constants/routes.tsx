@@ -4,7 +4,7 @@ import {
   AcademicCapIcon,
   CollectionIcon,
   UserCircleIcon,
-  TableIcon,
+  TableIcon
 } from '@heroicons/react/outline'
 
 const s = 'h-5 w-5 text-gray-400 mr-2 group-hover:text-white'
@@ -16,14 +16,14 @@ export const sidebarAdminRoutes = [
       {
         label: 'Dashboard',
         path: '/dashboard',
-        icon: <TableIcon className={s} />,
+        icon: <TableIcon className={s} />
       },
       {
         label: 'My Profile',
         path: '/profile',
-        icon: <UserCircleIcon className={s} />,
-      },
-    ],
+        icon: <UserCircleIcon className={s} />
+      }
+    ]
   },
   {
     title: 'users',
@@ -31,19 +31,19 @@ export const sidebarAdminRoutes = [
       {
         label: 'All Users',
         path: '/users',
-        icon: <UsersIcon className={s} />,
+        icon: <UsersIcon className={s} />
       },
       {
         label: 'Create Admin',
         path: '/create/admin',
-        icon: <UserAddIcon className={s} />,
+        icon: <UserAddIcon className={s} />
       },
       {
         label: 'Create Agent',
         path: '/create/agent',
-        icon: <UserAddIcon className={s} />,
-      },
-    ],
+        icon: <UserAddIcon className={s} />
+      }
+    ]
   },
   {
     title: 'universities',
@@ -51,19 +51,19 @@ export const sidebarAdminRoutes = [
       {
         label: 'All Universities',
         path: '/unis',
-        icon: <AcademicCapIcon className={s} />,
+        icon: <AcademicCapIcon className={s} />
       },
       {
         label: 'My Universities',
         path: '/user/unis',
-        icon: <AcademicCapIcon className={s} />,
+        icon: <AcademicCapIcon className={s} />
       },
       {
         label: 'Create University',
         path: '/create/university',
-        icon: <AcademicCapIcon className={s} />,
-      },
-    ],
+        icon: <AcademicCapIcon className={s} />
+      }
+    ]
   },
   {
     title: 'Others',
@@ -71,20 +71,20 @@ export const sidebarAdminRoutes = [
       {
         label: 'My Tasks',
         path: '/tasks',
-        icon: <CollectionIcon className={s} />,
+        icon: <CollectionIcon className={s} />
       },
       {
         label: 'Create Task',
         path: '/create/task',
-        icon: <CollectionIcon className={s} />,
+        icon: <CollectionIcon className={s} />
       },
       {
         label: 'Send Messages',
         path: '/sendMessages',
-        icon: <CollectionIcon className={s} />,
-      },
-    ],
-  },
+        icon: <CollectionIcon className={s} />
+      }
+    ]
+  }
 ]
 
 export const sidebarUserRoutes = [
@@ -94,14 +94,14 @@ export const sidebarUserRoutes = [
       {
         label: 'Dashboard',
         path: '/dashboard',
-        icon: <TableIcon className={s} />,
+        icon: <TableIcon className={s} />
       },
       {
         label: 'My Profile',
         path: '/profile',
-        icon: <UserCircleIcon className={s} />,
-      },
-    ],
+        icon: <UserCircleIcon className={s} />
+      }
+    ]
   },
   {
     title: 'universities',
@@ -109,14 +109,14 @@ export const sidebarUserRoutes = [
       {
         label: 'All Universities',
         path: '/unis',
-        icon: <AcademicCapIcon className={s} />,
+        icon: <AcademicCapIcon className={s} />
       },
       {
         label: 'My Universities',
         path: '/user/unis',
-        icon: <AcademicCapIcon className={s} />,
-      },
-    ],
+        icon: <AcademicCapIcon className={s} />
+      }
+    ]
   },
   {
     title: 'Others',
@@ -124,13 +124,13 @@ export const sidebarUserRoutes = [
       {
         label: 'My Tasks',
         path: '/tasks',
-        icon: <CollectionIcon className={s} />,
+        icon: <CollectionIcon className={s} />
       },
       {
         label: 'Send Messages',
         path: '/sendMessages',
-        icon: <CollectionIcon className={s} />,
-      },
-    ],
-  },
+        icon: <CollectionIcon className={s} />
+      }
+    ]
+  }
 ]

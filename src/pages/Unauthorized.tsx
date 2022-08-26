@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 
-function Unauthorized() {
+function Unauthorized () {
   return (
     <section className='h-screen bg-cover'>
       <div className='flex h-full w-full items-center justify-center container mx-auto px-8'>

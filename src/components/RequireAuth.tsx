@@ -4,7 +4,7 @@ import { Role } from '../types'
 
 interface Props {
   body: {
-    allowedRoles: Array<Role>
+    allowedRoles: Role[]
   }
 }
 
@@ -12,12 +12,12 @@ const RequireAuth = ({ allowedRoles }: Props['body']) => {
   const { user } = useStore()
   const location = useLocation()
 
+  if (!user) return <Navigate to='/login' state={{ from: location }} replace />
+
   return (
-    user?.role.find((role: Role) => allowedRoles?.includes(role))
+    user.role.find((role: Role) => allowedRoles.includes(role))
       ? <Outlet />
-      : user
-        ? <Navigate to='/unauthorized' state={{ from: location }} replace />
-        : <Navigate to='/login' state={{ from: location }} replace />
+      : <Navigate to='/unauthorized' state={{ from: location }} replace />
   )
 }
 

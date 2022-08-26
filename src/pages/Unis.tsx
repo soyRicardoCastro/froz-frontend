@@ -3,7 +3,7 @@ import {
   useState,
   useEffect,
   useCallback,
-  ChangeEvent,
+  ChangeEvent
 } from 'react'
 import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
@@ -17,7 +17,7 @@ import useStore from '../store'
 
 interface Props {
   sortData: {
-    tableData: University['body'][] | undefined
+    tableData: Array<University['body']> | undefined
     sortKey: UniKeys
     reverse: boolean
     search: string
@@ -30,27 +30,27 @@ interface Props {
   }
 }
 
-function Unis() {
+function Unis () {
   const { user, setUser } = useStore()
   const [sortKey, setSortKey] = useState<UniKeys>('_id')
   const [sortOrder, setSortOrder] = useState<SortOrder>('ascn')
-  const [userUnis, setUserUnis] = useState<Array<string>>([])
+  const [userUnis, setUserUnis] = useState<string[]>([])
   const [search, setSearch] = useState<string>('')
 
   const { data: unis, error, isFetching, isLoading, refetch } = useUnis()
   const id = user?._id as string
-  const { data } = useUser(id)
+  const { data, refetch: refetchUser } = useUser(id)
 
   useEffect(() => {
-    if (!data) return
+    if (data == null) return
     setUser(data)
   }, [data])
 
-  function sortData({
+  function sortData ({
     tableData,
     sortKey,
     reverse,
-    search,
+    search
   }: Props['sortData']) {
     if (search) {
       return tableData?.filter(
@@ -73,19 +73,21 @@ function Unis() {
     return sortedData
   }
 
-  function SortButton({
+  function SortButton ({
     sortOrder,
     columnKey,
     sortKey,
-    onClick,
+    onClick
   }: Props['sortButton']) {
     return (
       <button onClick={onClick}>
-        {sortKey === columnKey && sortOrder === 'desc' ? (
-          <ArrowDownIcon className="text-xs text-white w-2" />
-        ) : (
-          <ArrowUpIcon className="text-xs text-white w-2" />
-        )}
+        {sortKey === columnKey && sortOrder === 'desc'
+          ? (
+            <ArrowDownIcon className='text-xs text-white w-2' />
+            )
+          : (
+            <ArrowUpIcon className='text-xs text-white w-2' />
+            )}
       </button>
     )
   }
@@ -96,29 +98,30 @@ function Unis() {
         tableData: unis,
         sortKey,
         reverse: sortOrder === 'desc',
-        search,
+        search
       }),
     [unis, sortKey, sortOrder, search]
   )
 
-  function changeSort(key: UniKeys) {
+  function changeSort (key: UniKeys) {
     setSortOrder(sortOrder === 'ascn' ? 'desc' : 'ascn')
     setSortKey(key)
   }
 
-  const headers: { key: UniKeys; label: string }[] = [
+  const headers: Array<{ key: UniKeys, label: string }> = [
     { key: 'name', label: 'Name' },
     { key: 'state', label: 'State' },
     { key: 'division', label: 'Division' },
     { key: 'academicRank', label: 'Academic Rank' },
-    { key: 'coachs', label: 'Coachs' },
+    { key: 'coachs', label: 'Coachs' }
   ]
 
-  function handleCheckboxChange({ target }: ChangeEvent<HTMLInputElement>) {
+  function handleCheckboxChange ({ target }: ChangeEvent<HTMLInputElement>) {
     if (target.checked) {
-      if (user?.universities?.find((u) => u.name === target.value)) {
+      if ((user?.universities?.find((u) => u.name === target.value)) != null) {
+        target.checked = false
         return toast.warning(
-          'You already have this university in your list, please unselect'
+          'You already have this university in your list'
         )
       }
       userUnis.push(target.value)
@@ -129,21 +132,23 @@ function Unis() {
     if (!target.checked) {
       const unisFiltered = userUnis.filter((u) => u !== target.value)
       setUserUnis(unisFiltered)
-      return
     }
   }
 
-  async function handleClick() {
-    if (!userUnis.length) return toast.warning('Please select at least 1')
-    if (!user) return toast.error('You need login')
+  async function handleSubmit () {
+    if (userUnis.length === 0) return toast.warning('Please select at least 1')
+    if (user == null) return toast.error('You need login')
     try {
-      toast.info('Sending...')
-      await axios.post(`/api/add-user-uni/${user._id}`, {
-        universities: userUnis,
+      toast.promise(async () => await axios.post(`/api/add-user-uni/${user._id}`, {
+        universities: userUnis
+      }), {
+        error: "Error:(",
+        pending: "Pending...",
+        success: "Added successfully"
       })
-      refetch()
+      refetchUser()
+      if (data == null) return
       setUser(data)
-      toast.success('Added succesfully')
     } catch (e: any) {
       toast.error(e)
       console.log(e)
@@ -152,75 +157,95 @@ function Unis() {
 
   return (
     <Layout
-      title="Universities"
-      category="Users"
+      title='Universities'
+      category='Users'
       error={error}
       isFetching={isFetching}
       isLoading={isLoading}
     >
-      <div className="w-full mx-auto flex flex-col gap-2">
+      <div className='w-full mx-auto flex flex-col gap-2'>
         <input
-          placeholder="Find University"
-          className="py-2 px-3 ml-4 rounded-full bg-white text-black w-40"
+          placeholder='Find University'
+          className='py-2 px-3 ml-4 rounded-full bg-white text-black w-40'
           value={search}
-          type="text"
+          type='text'
           onChange={(e) => setSearch(e.target.value)}
         />
         <button
-          onClick={handleClick}
-          className="w-40 ml-4 py-3 px-5 rounded-full bg-lime-500 hover:cursor-pointer hover:bg-lime-600"
+          onClick={handleSubmit}
+          className='w-40 ml-4 py-3 px-5 rounded-full bg-lime-500 hover:cursor-pointer hover:bg-lime-600'
         >
           Add Unis
         </button>
-        <Table hoverable={true} className="w-[90%] mx-auto border-lg dark">
+        <Table hoverable className='w-[90%] mx-auto border-lg dark'>
           <Table.Head>
-            <Table.HeadCell className="!p-4">
+            <Table.HeadCell className='!p-4'>
               {/* <Checkbox /> */}
             </Table.HeadCell>
             {headers.map((row) => {
               return (
-                <Table.HeadCell key={row.key} className="text-white">
+                <Table.HeadCell key={row.key} className='text-white'>
                   {row.label}{' '}
                   <SortButton
                     columnKey={row.key}
                     onClick={() => changeSort(row.key)}
                     {...{
                       sortOrder,
-                      sortKey,
+                      sortKey
                     }}
                   />
                 </Table.HeadCell>
               )
             })}
+            {user?.role.includes('admin') && (
+              <Table.HeadCell>
+                Actions
+              </Table.HeadCell>
+            )}
           </Table.Head>
-          <Table.Body className="divide-y">
+          <Table.Body className='divide-y'>
             {sortedData()?.map((uni) => (
               <Table.Row
                 key={uni._id}
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                className='bg-white dark:border-gray-700 dark:bg-gray-800'
               >
-                <Table.Cell className="!p-4">
+                <Table.Cell className='!p-4'>
                   <Checkbox onChange={handleCheckboxChange} value={uni.name} />
                 </Table.Cell>
-                <Table.Cell className="whitespace-nowrap font-medium text-white">
+                <Table.Cell className='whitespace-nowrap font-medium text-white'>
                   <Link to={`/unis/${uni._id}`}>{uni.name}</Link>
                 </Table.Cell>
-                <Table.Cell className="text-gray-200">{uni.state}</Table.Cell>
-                <Table.Cell className="text-gray-200">
+                <Table.Cell className='text-gray-200'>{uni.state}</Table.Cell>
+                <Table.Cell className='text-gray-200'>
                   {uni.division}
                 </Table.Cell>
-                <Table.Cell className="text-gray-200">
+                <Table.Cell className='text-gray-200'>
                   {uni.academicRank}
                 </Table.Cell>
-                <Table.Cell className="text-gray-200">
+                <Table.Cell className='text-gray-200'>
                   {uni.coachs.map((item, i) => (
-                    <div key={i} className="mb-2">
-                      <div className="text-gray-400">{item.name}</div>
-                      <div className="text-gray-200">{item.email}</div>
-                      <div className="text-gray-200">{item.phone}</div>
+                    <div key={i} className='mb-2'>
+                      <div className='text-gray-400'>{item.name}</div>
+                      <div className='text-gray-200'>{item.email}</div>
+                      <div className='text-gray-200'>{item.phone}</div>
                     </div>
                   ))}
                 </Table.Cell>
+                {user?.role.includes('admin') && (
+                  <Table.Cell>
+                  <button onClick={async () => {
+                    toast.info("Deleting University")
+                    await axios.delete(`/api/unis/${uni._id}`)
+                    refetch()
+                    toast.success("Deleted Successfully")
+                  }}>
+                    Delete
+                  </button>
+                  <Link to={`/unis/${uni._id}/edit`}>
+                    Edit
+                  </Link>
+                </Table.Cell>
+                )}
               </Table.Row>
             ))}
           </Table.Body>

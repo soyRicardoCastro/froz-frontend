@@ -10,17 +10,17 @@ import { UserKeys, User } from '../types'
 
 interface Props {
   sortData: {
-    tableData: User['body'][] | undefined
+    tableData: Array<User['body']> | undefined
     search: string
   }
 }
 
-function Users() {
+function Users () {
   const { data: users, error, isFetching, isLoading, refetch } = useUsers()
   const nav = useNavigate()
   const [search, setSearch] = useState<string>('')
 
-  function sortData({ tableData, search }: Props['sortData']) {
+  function sortData ({ tableData, search }: Props['sortData']) {
     if (search) {
       return tableData?.filter(
         (u) =>
@@ -39,49 +39,49 @@ function Users() {
     () =>
       sortData({
         tableData: users,
-        search,
+        search
       }),
     [users, search]
   )
 
-  const headers: { key: UserKeys; label: string }[] = [
+  const headers: Array<{ key: UserKeys, label: string }> = [
     { key: 'firstName', label: 'Fullname' },
     { key: 'email', label: 'Email' },
     { key: 'age', label: 'Age' },
-    { key: 'gender', label: 'Gender' },
+    { key: 'gender', label: 'Gender' }
   ]
 
   return (
     <Layout
-      title="Users"
-      category="Admin"
+      title='Users'
+      category='Admin'
       isFetching={isFetching}
       isLoading={isLoading}
       error={error}
     >
-      <div className="w-full mx-auto flex flex-col gap-2">
+      <div className='w-full mx-auto flex flex-col gap-2'>
         <input
-          placeholder="Find User"
-          className="py-2 px-3 ml-4 rounded-full bg-white text-black w-40"
+          placeholder='Find User'
+          className='py-2 px-3 ml-4 rounded-full bg-white text-black w-40'
           value={search}
-          type="text"
+          type='text'
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Table hoverable={true} className="w-4/5 mx-auto border-lg dark">
+        <Table hoverable className='w-4/5 mx-auto border-lg dark'>
           <Table.Head>
             {headers.map((row) => (
-              <Table.HeadCell key={row.key} className="text-white">
+              <Table.HeadCell key={row.key} className='text-white'>
                 {row.label}
               </Table.HeadCell>
             ))}
           </Table.Head>
-          <Table.Body className="divide-y">
+          <Table.Body className='divide-y'>
             {sortedData()?.map((user) => (
-              <Table.Row key={user._id} className="border-gray-700 bg-gray-800">
-                <Table.Cell className="whitespace-nowrap font-mediumtext-white">
+              <Table.Row key={user._id} className='border-gray-700 bg-gray-800'>
+                <Table.Cell className='whitespace-nowrap font-mediumtext-white'>
                   <Link
                     to={`/users/${user._id}`}
-                    className="text-white hover:text-blue-500"
+                    className='text-white hover:text-blue-500'
                   >
                     {`${user.firstName} ${user.lastName}`}
                   </Link>
@@ -89,9 +89,9 @@ function Users() {
                 <Table.Cell>{user.email}</Table.Cell>
                 <Table.Cell>{user.age}</Table.Cell>
                 <Table.Cell>{user.gender}</Table.Cell>
-                <Table.Cell className="flex items-center">
+                <Table.Cell className='flex items-center'>
                   <button
-                    className="p-2 rounded-full"
+                    className='p-2 rounded-full'
                     onClick={async () => {
                       toast.info('Deleting.User..')
                       await axios.delete(`/api/users/${user._id}`)
@@ -99,13 +99,13 @@ function Users() {
                       toast.success('User deleted successfully')
                     }}
                   >
-                    <TrashIcon className="w-5 h-5 text-red-500" />
+                    <TrashIcon className='w-5 h-5 text-red-500' />
                   </button>
                   <button
-                    className="p-2 rounded-full"
+                    className='p-2 rounded-full'
                     onClick={() => nav(`/users/${user._id}`)}
                   >
-                    <EyeIcon className="w-5 h-5 text-gray-200" />
+                    <EyeIcon className='w-5 h-5 text-gray-200' />
                   </button>
                 </Table.Cell>
               </Table.Row>

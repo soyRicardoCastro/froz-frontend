@@ -7,9 +7,9 @@ interface Props {
   }
 }
 
-function CreateUserPage({ role }: Props['body']) {
+function CreateUserPage ({ role }: Props['body']) {
   return (
-    <Layout title={`Create ${role}`} category="Admin">
+    <Layout title={`Create ${role}`} category='Admin'>
       <CreateUser role={role} />
     </Layout>
   )
