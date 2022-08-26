@@ -9,7 +9,6 @@ import {
 } from '@heroicons/react/outline'
 
 const Dashboard = () => {
-  const navigate = useNavigate()
   const { user } = useStore()
 
   return (
