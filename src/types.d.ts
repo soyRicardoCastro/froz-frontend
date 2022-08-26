@@ -4,8 +4,8 @@ export interface Career {
 
 export interface Coach {
   name: string
-  email: string
-  phone: string
+  email?: string
+  phone?: string
   gender?: string
 }
 
@@ -23,19 +23,10 @@ export interface University {
     _id: string
     name: string
     state: string
-    careers: [{
-      _id: string
-      name: string
-    }]
+    careers: Career[]
     academicRank: string
     division: string
-    coachs: [{
-      _id: string
-      name: string
-      phone: string
-      email: string
-      gender: string
-    }]
+    coachs: Coach[]
     createdAt: Date
     updatedAt: Date
     __v: number
@@ -56,7 +47,7 @@ export interface User {
     gender: string
     universities?: Array<University['body']>
     completedTask: number
-    role: Array<Role>
+    role: Role[]
     createdAt: Date
     updatedAt: Date
     __v: number
