@@ -59,18 +59,6 @@ function Uni () {
               </p>
             </div>
           ))}
-
-          {/* <button
-          className="px-3 py-2 w-40 rounded-full bg-lime-500 text-white"
-          onClick={async () => {
-            toast.info('Deleting University...')
-            nav('/unis')
-            await axios.delete(`/api/users/${uni?._id}`)
-            toast.success('University deleted successfully')
-          }}
-        >
-          Delete University
-        </button> */}
         </div>
       </div>
     </Layout>
