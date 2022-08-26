@@ -9,6 +9,25 @@ export interface Coach {
   gender?: string
 }
 
+export interface CareerFromDB {
+  _id: string
+  name: string
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+}
+
+interface CoachFromDB {
+  _id: string
+  name: string
+  email?: string
+  phone?: string
+  gender?: string
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+}
+
 export interface CreateUniForm {
   name: string
   state: string
@@ -23,10 +42,10 @@ export interface University {
     _id: string
     name: string
     state: string
-    careers: Career[]
+    careers: CareerFromDB[]
     academicRank: string
     division: string
-    coachs: Coach[]
+    coachs: CoachFromDB[]
     createdAt: Date
     updatedAt: Date
     __v: number
