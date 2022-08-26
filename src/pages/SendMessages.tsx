@@ -1,6 +1,6 @@
 import { Email, Layout } from '../components'
 
-function SendMessages() {
+function SendMessages () {
   return (
     <Layout
       title='Contact a University'
