@@ -9,33 +9,39 @@
     "co": "sui-mono commit"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.6",
-    "@hookform/resolvers": "^2.9.3",
-    "@nextui-org/react": "^1.0.0-beta.9",
-    "axios": "^0.27.2",
-    "emailjs-com": "^3.2.0",
-    "flowbite": "^1.4.7",
-    "flowbite-react": "^0.1.3",
-    "formik": "^2.2.9",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-hook-form": "^7.33.1",
-    "react-query": "^3.39.1",
-    "react-router-dom": "^6.3.0",
-    "react-toastify": "^9.0.5",
-    "zod": "^3.17.3",
-    "zustand": "^4.0.0-rc.1"
+    "@heroicons/react": "1.0.6",
+    "@hookform/resolvers": "2.9.3",
+    "@nextui-org/react": "1.0.0-beta.9",
+    "axios": "0.27.2",
+    "emailjs-com": "3.2.0",
+    "flowbite": "1.4.7",
+    "flowbite-react": "0.1.3",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-hook-form": "7.33.1",
+    "react-query": "3.39.1",
+    "react-router-dom": "6.3.0",
+    "react-toastify": "9.0.5",
+    "zod": "3.17.3",
+    "zustand": "4.0.0-rc.1"
   },
   "devDependencies": {
     "@s-ui/mono": "2.31.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
-    "autoprefixer": "^10.4.7",
-    "postcss": "^8.4.14",
-    "standard": "17.0.0",
-    "tailwindcss": "^3.1.4",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.9"
+    "@types/react": "18.0.0",
+    "@types/react-dom": "18.0.0",
+    "@vitejs/plugin-react": "1.3.0",
+    "autoprefixer": "10.4.7",
+    "postcss": "8.4.14",
+    "tailwindcss": "3.1.4",
+    "ts-standard": "^11.0.0",
+    "typescript": "4.6.3",
+    "vite": "2.9.9"
+  },
+  "ts-standard": {
+    "ignore": [
+      "dist",
+      "src/**/*.js"
+    ],
+    "fix": true
   }
 }
