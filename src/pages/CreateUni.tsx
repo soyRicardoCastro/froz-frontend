@@ -1,118 +1,94 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { Layout } from '../components'
-import { Career, Coach, CreateUniForm } from '../types'
+import { Career, Coach } from '../types'
 import axios from '../services/axios'
 
+const Container = ({title, info, children}: {title: string, info: string, children: JSX.Element[] | JSX.Element}) => (
+  <div className='flex flex-col gap-3'>
+    <h3 className='text-xl text-white'>{title}</h3>
+    <p className='text-xs textgray200'>{info}</p>
+    {children}
+  </div>
+)
+
 const CreateUni = () => {
-  const [uni, setUni] = useState<CreateUniForm>({
-    name: '',
-    state: '',
-    academicRank: '',
-    division: '',
-    careers: [],
-    coachs: []
-  })
-  const [loading, setLoading] = useState<boolean>(false)
-  const [name, setName] = useState<string>('')
-  const [state, setState] = useState<string>('')
-  const [academicRank, setAcademicRank] = useState<string>('')
-  const [division, setDivision] = useState<string>('')
-  const [career, setCareer] = useState<string>('')
+  const [name, setName] = useState('')
+  const [state, setState] = useState('')
+  const [academicRank, setAcademicRank] = useState('')
+  const [division, setDivision] = useState('')
+  const [career, setCareer] = useState('')
   const [careers, setCareers] = useState<Career[]>([])
+
+  const [coachName, setCoachName] = useState('')
+  const [coachEmail, setCoachEmail] = useState('')
+  const [coachPhone, setCoachPhone] = useState('')
+  const [coachGender, setCoachGender] = useState('')
+
+  const [loading, setLoading] = useState(false)
+
+  const s = 'w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+
   const [coachs, setCoachs] = useState<Coach[]>([])
 
-  const [coachName, setCoachName] = useState<string>('')
-  const [coachEmail, setCoachEmail] = useState<string>('')
-  const [coachPhone, setCoachPhone] = useState<string>('')
-  const [coachGender, setCoachGender] = useState<string>('')
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    toast.info('Sending')
+  async function handleSubmit() {
     setLoading(true)
-
-    await axios.post('/api/unis', uni)
-
-    setLoading(false)
-    toast.success('University Created!')
-
-    setUni({
-      name: '',
-      state: '',
-      academicRank: '',
-      division: '',
-      careers: [],
-      coachs: []
-    })
-    setName('')
-    setState('')
-    setAcademicRank('')
-    setDivision('')
-  }
-
-  const submitForm = () => {
-    setUni({
+    await toast.promise(async () => await axios.post('/api/unis', {
       name,
       state,
       academicRank,
       division,
-      careers,
-      coachs
+      coachs,
+      careers
+    }), {
+      pending: 'Enviando',
+      error: 'Error',
+      success: 'Bien ricardo'
     })
+
+    setName('')
+    setState('')
+    setAcademicRank('')
+    setDivision('')
+    setLoading(false)
   }
 
-  const handleClickCareer = () => {
-    // const ca = { name: career }
-    // careers.push(ca)
-    setCareers([...careers, { name: career }])
-    setCareer('')
-    toast.info('Career saved')
-  }
+    function addCareer () {
+      const ca = { name: career }
+      careers.push(ca)
+      toast.info('Career saved')
+      console.log(careers)
+    }
 
-  const handleClickCoach = () => {
-    // const coach = {
-    //   name: coachName,
-    //   phone: coachPhone,
-    //   email: coachEmail,
-    //   gender: coachGender
-    // }
-    !coachEmail ? setCoachEmail("without@mail.com") : coachEmail
-    !coachPhone ? setCoachPhone("without phone") : coachPhone
+  function addCoach () {
+    const coach = {
+      name: coachName,
+      phone: coachPhone,
+      email: coachEmail,
+      gender: coachGender
+    }
 
-    setCoachs([
-      ...coachs,
-      {
-        name: coachName,
-        phone: coachPhone,
-        email: coachEmail,
-        gender: coachGender
-      }
-    ])
+    coachs.push(coach)
 
-    // coachs.push(coach)
     toast.info('Coach saved')
+
     setCoachName('')
     setCoachEmail('')
     setCoachPhone('')
     setCoachGender('')
+    console.log(coachs)
   }
 
   return (
     <Layout title='Create University' category='Admin'>
-      <div className='flex justify-center align-center'>
-        <form
-          onSubmit={handleSubmit}
-          className='w-4/5 mx-auto h-full grid grid-cols-3 gap-5 place-content-center'
-        >
-          <div className='flex flex-col gap-3'>
-            <h3 className='text-xl text-white'>Basic Info</h3>
-            <p className='text-xs textgray200'>
-              * Write all the info and when you have all the form completed,
-              push "Create Uni" button
-            </p>
+       <div className='flex justify-center align-center'>
+         <form
+           onSubmit={handleSubmit}
+           className='w-4/5 mx-auto h-full grid grid-cols-3 gap-5 place-content-center'
+         >
+          <Container title='Basic Info' info='* Write all the info and when you have all the form completed, push "Create Uni" button'>
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Name'
               value={name}
               onChange={(e) => {
@@ -120,7 +96,7 @@ const CreateUni = () => {
               }}
             />
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='State'
               value={state}
               onChange={(e) => {
@@ -128,7 +104,7 @@ const CreateUni = () => {
               }}
             />
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Academic Rank'
               value={academicRank}
               onChange={(e) => {
@@ -137,23 +113,18 @@ const CreateUni = () => {
             />
 
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Division'
               value={division}
               onChange={(e) => {
                 setDivision(e.target.value)
               }}
             />
-          </div>
+           </Container>
 
-          <div className='flex flex-col gap-3'>
-            <h3 className='text-xl text-white'>Careers</h3>
-            <p className='text-xs textgray200'>
-              * Write the career and push "Add Career" for save
-            </p>
-
+           <Container title='Careers' info='* Write the career and push "Add Career" for save'>
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Career Name'
               value={career}
               onChange={(e) => {
@@ -161,70 +132,50 @@ const CreateUni = () => {
               }}
             />
             <div
-              onClick={handleClickCareer}
+              onClick={addCareer}
               className='px-5 py-2 rounded-md bg-slate-600 w-32 hover:cursor-pointer hover:bg-slate-400 transition'
-            >
-              Add Career
-            </div>
-          </div>
+             >
+               Add Career
+             </div>
+           </Container>
 
-          <div className='flex flex-col gap-3'>
-            <h3 className='text-xl text-white'>Coachs</h3>
-            <p className='text-xs textgray200'>
-              * Write the coach info and push "Add Coach" for save
-            </p>
+           <Container title='Coachs' info={`* Write the coach info and push "Add Coach" for save`}>
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Coach Name'
               value={coachName}
               onChange={(e) => setCoachName(e.target.value)}
             />
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Coach Email'
               value={coachEmail}
               onChange={(e) => setCoachEmail(e.target.value)}
             />
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Coach Phone'
               value={coachPhone}
               onChange={(e) => setCoachPhone(e.target.value)}
             />
             <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              className={s}
               placeholder='Coach Gender'
               value={coachGender}
               onChange={(e) => setCoachGender(e.target.value)}
             />
             <div
-              onClick={handleClickCoach}
+              onClick={addCoach}
               className='px-5 py-2 rounded-md bg-slate-600 w-32 hover:cursor-pointer hover:bg-slate-400 transition'
-            >
-              Add Coach
-            </div>
-          </div>
+             >
+               Add Coach
+             </div>
+           </Container>
 
-          {loading
-            ? (
-              <button
-                className='px-7 py-3 bg-lime-500 transition mt-6 hover:cursor-disabled rounded-xl'
-                onClick={submitForm}
-                type='submit'
-                disabled
-              >
-                Sending...
-              </button>
-              )
-            : (
-              <button
-                className='px-7 py-3 bg-lime-500 transition mt-6 hover:bg-lime-600 rounded-xl'
-                onClick={submitForm}
-                type='submit'
-              >
-                Create Uni
-              </button>
-              )}
+           {loading
+             ? (<button
+                 className='px-7 py-3 bg-lime-500 transition mt-6 hover:cursor-disabled rounded-xl' disabled>Sending...</button>)
+             : ( <button className='px-7 py-3 bg-lime-500 transition mt-6 hover:bg-lime-600 rounded-xl' type='submit'>Create Uni</button>)}
         </form>
       </div>
     </Layout>

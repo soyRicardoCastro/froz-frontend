@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Layout } from '../components'
 import axios from '../services/axios'
 import { toast } from 'react-toastify'
-import { Coach, CreateUniForm } from '../types'
+import { Coach, CreateUniForm, Career } from '../types'
 
 export default function EditUni ({}) {
   const navigate = useNavigate()
@@ -26,6 +26,9 @@ export default function EditUni ({}) {
     division: ''
   })
 
+  const [career, setCareer] = useState<string>('')
+  const [careers, setCareers] = useState<Career[]>([])
+
   const [coachName, setCoachName] = useState<string>('')
   const [coachEmail, setCoachEmail] = useState<string | undefined>('')
   const [coachPhone, setCoachPhone] = useState<string | undefined>('')
@@ -46,6 +49,7 @@ export default function EditUni ({}) {
         division
       })
       setCoachs(coachs)
+      setCareers(careers)
     }).catch((e) => {
       console.error(e)
       navigate('/unis')
@@ -58,6 +62,7 @@ export default function EditUni ({}) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     await toast.promise(async () => await axios.put(`/api/unis/${id}`, uni), {
       pending: "Sending info",
       error: "A error has been occurred",
@@ -67,24 +72,28 @@ export default function EditUni ({}) {
   }
 
   const handleClickCoach = () => {
-    !coachEmail ? setCoachEmail("without@mail.com") : coachEmail
-    !coachPhone ? setCoachPhone("without phone") : coachPhone
+    coachs.push({
+      name: coachName,
+      phone: coachPhone,
+      email: coachEmail,
+      gender: coachGender
+    })
 
-    setCoachs([
-      ...coachs,
-      {
-        name: coachName,
-        phone: coachPhone,
-        email: coachEmail,
-        gender: coachGender
-      }
-    ])
     setUni({...uni, coachs})
+
     toast.info('Coach saved')
     setCoachName('')
     setCoachEmail('')
     setCoachPhone('')
     setCoachGender('')
+  }
+
+  const handleClickCareer = () => {
+    const ca = { name: career }
+    careers.push(ca)
+    setCareer('')
+    setUni({...uni, careers})
+    toast.info('Career saved')
   }
 
   return (
@@ -102,6 +111,28 @@ export default function EditUni ({}) {
 
           <label>Academic Rank</label>
           <input value={uni.academicRank} className={s} name='academicRank' onChange={handleChange} />
+
+          <div className='flex flex-col gap-3'>
+            <h3 className='text-xl text-white'>Careers</h3>
+            <p className='text-xs textgray200'>
+              * Write the career and push "Add Career" for save
+            </p>
+
+            <input
+              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
+              placeholder='Career Name'
+              value={career}
+              onChange={(e) => {
+                setCareer(e.target.value)
+              }}
+            />
+            <div
+              onClick={handleClickCareer}
+              className='px-5 py-2 rounded-md bg-slate-600 w-32 hover:cursor-pointer hover:bg-slate-400 transition'
+            >
+              Add Career
+            </div>
+          </div>
 
           <div className='flex flex-col gap-3'>
             <h3 className='text-xl text-white'>Coachs</h3>
