@@ -5,7 +5,7 @@ import {
   useCallback,
   ChangeEvent
 } from 'react'
-import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/react/outline'
+import { ArrowUpIcon, ArrowDownIcon, TrashIcon, PencilIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { Table, Checkbox } from 'flowbite-react'
 import { toast } from 'react-toastify'
@@ -234,15 +234,17 @@ function Unis () {
                 {user?.role.includes('admin') && (
                   <Table.Cell>
                   <button onClick={async () => {
-                    toast.info("Deleting University")
-                    await axios.delete(`/api/unis/${uni._id}`)
+                    toast.promise(async () => await axios.delete(`/api/unis/${uni._id}`), {
+                      pending: 'Deleting',
+                      success: 'Deleted successfully',
+                      error: 'Internal server error'
+                    })
                     refetch()
-                    toast.success("Deleted Successfully")
                   }}>
-                    Delete
+                    <TrashIcon className='h-5 w-5 text-white' />
                   </button>
                   <Link to={`/unis/${uni._id}/edit`}>
-                    Edit
+                    <PencilIcon className='w-5 h-5 text-white' />
                   </Link>
                 </Table.Cell>
                 )}
