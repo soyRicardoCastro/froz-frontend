@@ -69,7 +69,7 @@ const Email = () => {
         <option disabled value='email' className='text-gray-200 font-semibold'>
           - Choose a Coach -
         </option>
-        {unis?.map((u) => (
+        {unis?.map((u) => u.coachs.length > 0 && (
           <Fragment key={u._id}>
             <option
               disabled
@@ -78,11 +78,11 @@ const Email = () => {
             >
               {u.name}
             </option>
-            {u.coachs.map((c) => c.email !== '' ? (
-              <option value={c.email}>
-                {c.name}: {c.email}
+            {u.coachs.map((c) => c.contact?.includes('@') && (
+              <option value={c.contact}>
+                {c.name}: {c.contact}
               </option>
-            ) : null)}
+            ))}
           </Fragment>
         ))}
       </select>

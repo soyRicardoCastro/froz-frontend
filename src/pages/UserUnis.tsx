@@ -26,7 +26,6 @@ function UserUnis () {
           <Table.HeadCell>Name</Table.HeadCell>
           <Table.HeadCell>State</Table.HeadCell>
           <Table.HeadCell>Division</Table.HeadCell>
-          <Table.HeadCell>Academic Rank</Table.HeadCell>
           <Table.HeadCell>Coachs</Table.HeadCell>
         </Table.Head>
         <Table.Body className='divide-y'>
@@ -40,13 +39,11 @@ function UserUnis () {
               </Table.Cell>
               <Table.Cell className='text-white'>{uni.state}</Table.Cell>
               <Table.Cell className='text-white'>{uni.division}</Table.Cell>
-              <Table.Cell className='text-white'>{uni.academicRank}</Table.Cell>
               <Table.Cell>
                 {uni.coachs.map((item, i) => (
                   <div key={i} className='mb-2'>
                     <div className='text-gray-400'>{item.name}</div>
-                    <div className='text-gray-200'>{item.email}</div>
-                    <div className='text-gray-200'>{item.phone}</div>
+                    <div className='text-gray-200'>{item.contact}</div>
                   </div>
                 ))}
               </Table.Cell>

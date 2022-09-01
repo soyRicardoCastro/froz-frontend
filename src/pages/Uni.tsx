@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Layout } from '../components'
 import { useUni } from '../query'
 
@@ -23,10 +23,6 @@ function Uni () {
           State: <span className='text-white font-semibold'>{uni?.state}</span>
         </h1>
         <h2 className='text-2xl'>
-          Academic Rank:{' '}
-          <span className='text-white font-semibold'>{uni?.academicRank}</span>
-        </h2>
-        <h2 className='text-2xl'>
           Division:{' '}
           <span className='text-white font-semibold'>{uni?.division}</span>
         </h2>
@@ -49,13 +45,7 @@ function Uni () {
                 Name: <span className='font-semibold'>{coach.name}</span>
               </p>
               <p>
-                Email: <span className='font-semibold'>{coach.email}</span>
-              </p>
-              <p>
-                Phone: <span className='font-semibold'>{coach.phone}</span>
-              </p>
-              <p>
-                Gender: <span className='font-semibold'>{coach.gender}</span>
+                Contact: <span className='font-semibold'>{coach.contact}</span>
               </p>
             </div>
           ))}

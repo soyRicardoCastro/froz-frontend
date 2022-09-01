@@ -18,11 +18,8 @@ export default function EditUni ({}) {
     }],
     coachs: [{
       name: '',
-      gender: '',
-      phone: '',
-      email: ''
+      contact: ''
     }],
-    academicRank: '',
     division: ''
   })
 
@@ -30,22 +27,19 @@ export default function EditUni ({}) {
   const [careers, setCareers] = useState<Career[]>([])
 
   const [coachName, setCoachName] = useState<string>('')
-  const [coachEmail, setCoachEmail] = useState<string | undefined>('')
-  const [coachPhone, setCoachPhone] = useState<string | undefined>('')
-  const [coachGender, setCoachGender] = useState<string | undefined>('')
+  const [coachContact, setCoachContact] = useState<string | undefined>('')
 
   const [coachs, setCoachs] = useState<Coach[]>([])
 
   const s = 'w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
 
   useEffect(() => {
-    getUni(id).then(({name, state, careers, coachs, academicRank, division}) => {
+    getUni(id).then(({name, state, careers, coachs, division}) => {
       setUni({
         name,
         state,
         careers,
         coachs,
-        academicRank,
         division
       })
       setCoachs(coachs)
@@ -74,18 +68,14 @@ export default function EditUni ({}) {
   const handleClickCoach = () => {
     coachs.push({
       name: coachName,
-      phone: coachPhone,
-      email: coachEmail,
-      gender: coachGender
+      contact: coachContact
     })
 
     setUni({...uni, coachs})
 
     toast.info('Coach saved')
     setCoachName('')
-    setCoachEmail('')
-    setCoachPhone('')
-    setCoachGender('')
+    setCoachContact('')
   }
 
   const handleClickCareer = () => {
@@ -108,9 +98,6 @@ export default function EditUni ({}) {
 
           <label>Division</label>
           <input value={uni.division} className={s} name='division' onChange={handleChange} />
-
-          <label>Academic Rank</label>
-          <input value={uni.academicRank} className={s} name='academicRank' onChange={handleChange} />
 
           <div className='flex flex-col gap-3'>
             <h3 className='text-xl text-white'>Careers</h3>
@@ -148,21 +135,10 @@ export default function EditUni ({}) {
             <input
               className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
               placeholder='Coach Email'
-              value={coachEmail}
-              onChange={(e) => setCoachEmail(e.target.value)}
+              value={coachContact}
+              onChange={(e) => setCoachContact(e.target.value)}
             />
-            <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
-              placeholder='Coach Phone'
-              value={coachPhone}
-              onChange={(e) => setCoachPhone(e.target.value)}
-            />
-            <input
-              className='w-full border-none bg-slate-900 text-white py-2 px-5 rounded-xl outline-none focus:outline-none'
-              placeholder='Coach Gender'
-              value={coachGender}
-              onChange={(e) => setCoachGender(e.target.value)}
-            />
+
             <div
               onClick={handleClickCoach}
               className='px-5 py-2 rounded-md bg-slate-600 w-32 hover:cursor-pointer hover:bg-slate-400 transition'

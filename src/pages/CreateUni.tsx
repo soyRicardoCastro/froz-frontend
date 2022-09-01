@@ -21,9 +21,7 @@ const CreateUni = () => {
   const [careers, setCareers] = useState<Career[]>([])
 
   const [coachName, setCoachName] = useState('')
-  const [coachEmail, setCoachEmail] = useState('')
-  const [coachPhone, setCoachPhone] = useState('')
-  const [coachGender, setCoachGender] = useState('')
+  const [coachContact, setCoachContact] = useState('')
 
   const [loading, setLoading] = useState(false)
 
@@ -63,9 +61,7 @@ const CreateUni = () => {
   function addCoach () {
     const coach = {
       name: coachName,
-      phone: coachPhone,
-      email: coachEmail,
-      gender: coachGender
+      contact: coachContact
     }
 
     coachs.push(coach)
@@ -73,9 +69,7 @@ const CreateUni = () => {
     toast.info('Coach saved')
 
     setCoachName('')
-    setCoachEmail('')
-    setCoachPhone('')
-    setCoachGender('')
+    setCoachContact('')
     console.log(coachs)
   }
 
@@ -103,15 +97,6 @@ const CreateUni = () => {
                 setState(e.target.value)
               }}
             />
-            <input
-              className={s}
-              placeholder='Academic Rank'
-              value={academicRank}
-              onChange={(e) => {
-                setAcademicRank(e.target.value)
-              }}
-            />
-
             <input
               className={s}
               placeholder='Division'
@@ -148,21 +133,9 @@ const CreateUni = () => {
             />
             <input
               className={s}
-              placeholder='Coach Email'
-              value={coachEmail}
-              onChange={(e) => setCoachEmail(e.target.value)}
-            />
-            <input
-              className={s}
-              placeholder='Coach Phone'
-              value={coachPhone}
-              onChange={(e) => setCoachPhone(e.target.value)}
-            />
-            <input
-              className={s}
-              placeholder='Coach Gender'
-              value={coachGender}
-              onChange={(e) => setCoachGender(e.target.value)}
+              placeholder='Coach Contact'
+              value={coachContact}
+              onChange={(e) => setCoachContact(e.target.value)}
             />
             <div
               onClick={addCoach}

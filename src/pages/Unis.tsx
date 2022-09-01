@@ -57,7 +57,6 @@ function Unis () {
         (u) =>
           u.name.toLowerCase().includes(search.toLowerCase()) ||
           u.state.toLowerCase().includes(search.toLowerCase()) ||
-          u.academicRank.toLowerCase().includes(search.toLowerCase()) ||
           u.division.toLowerCase().includes(search.toLowerCase())
       )
     }
@@ -112,7 +111,6 @@ function Unis () {
     { key: 'name', label: 'Name' },
     { key: 'state', label: 'State' },
     { key: 'division', label: 'Division' },
-    { key: 'academicRank', label: 'Academic Rank' },
     { key: 'coachs', label: 'Coachs' }
   ]
 
@@ -220,14 +218,10 @@ function Unis () {
                   {uni.division}
                 </Table.Cell>
                 <Table.Cell className='text-gray-200'>
-                  {uni.academicRank}
-                </Table.Cell>
-                <Table.Cell className='text-gray-200'>
                   {uni.coachs.map((item, i) => (
                     <div key={i} className='mb-2'>
                       <div className='text-gray-400'>{item.name}</div>
-                      <div className='text-gray-200'>{item.email}</div>
-                      <div className='text-gray-200'>{item.phone}</div>
+                      <div className='text-gray-200'>{item.contact}</div>
                     </div>
                   ))}
                 </Table.Cell>
