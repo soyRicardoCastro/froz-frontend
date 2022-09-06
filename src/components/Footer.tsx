@@ -8,22 +8,22 @@ function Footer () {
       </div>
       <ul className='flex text-gray-400 flex-wrap items-center justify-center text-sm sm:mt-0'>
         <li className='last:mr-0 md:mr-6 mt-1'>
-          <Link to='/about' className='hover:underline'>
+          <Link to='/about' className='hover:underline text-white'>
             About
           </Link>
         </li>
         <li className='last:mr-0 md:mr-6 mt-1'>
-          <Link to='/privacy-policy' className='hover:underline'>
+          <Link to='/privacy-policy' className='hover:underline text-white'>
             Privacy Policy
           </Link>
         </li>
         <li className='last:mr-0 md:mr-6 mt-1'>
-          <Link to='/licensing' className='hover:underline'>
+          <Link to='/licensing' className='hover:underline text-white'>
             Licensing
           </Link>
         </li>
         <li className='last:mr-0 md:mr-6 mt-1'>
-          <Link to='/contact' className='hover:underline'>
+          <Link to='/contact' className='hover:underline text-white'>
             Contact
           </Link>
         </li>

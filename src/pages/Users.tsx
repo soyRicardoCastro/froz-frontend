@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from '../services/axios'
 import { toast } from 'react-toastify'
 import { UserKeys, User } from '../types'
+import useStore from '../store'
 
 interface Props {
   sortData: {
@@ -17,6 +18,7 @@ interface Props {
 
 function Users () {
   const { data: users, error, isFetching, isLoading, refetch } = useUsers()
+  const { user: yourself } = useStore()
   const nav = useNavigate()
   const [search, setSearch] = useState<string>('')
 
@@ -62,7 +64,7 @@ function Users () {
       <div className='w-full mx-auto flex flex-col gap-2'>
         <input
           placeholder='Find User'
-          className='py-2 px-3 ml-4 rounded-full bg-white text-black w-40'
+          className='py-2 px-3 ml-10 rounded-full bg-white text-black w-40'
           value={search}
           type='text'
           onChange={(e) => setSearch(e.target.value)}
@@ -74,6 +76,9 @@ function Users () {
                 {row.label}
               </Table.HeadCell>
             ))}
+            <Table.HeadCell className='text-white'>
+              Actions
+            </Table.HeadCell>
           </Table.Head>
           <Table.Body className='divide-y'>
             {sortedData()?.map((user) => (
@@ -93,10 +98,14 @@ function Users () {
                   <button
                     className='p-2 rounded-full'
                     onClick={async () => {
-                      toast.info('Deleting.User..')
-                      await axios.delete(`/api/users/${user._id}`)
-                      refetch()
-                      toast.success('User deleted successfully')
+                      if (user._id === yourself?._id) return toast.error("You can't delete yourself")
+
+                      await toast.promise(async () => await axios.delete(`/api/users/${user._id}`), {
+                        pending: "Deleting user",
+                        error: "A error has been occurred",
+                        success: "Success"
+                      })
+                      await refetch()
                     }}
                   >
                     <TrashIcon className='w-5 h-5 text-red-500' />

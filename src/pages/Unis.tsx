@@ -164,21 +164,20 @@ function Unis () {
       <div className='w-full mx-auto flex flex-col gap-2'>
         <input
           placeholder='Find University'
-          className='py-2 px-3 ml-4 rounded-full bg-white text-black w-40'
+          className='py-2 px-3 ml-10 rounded-full bg-white text-black w-40'
           value={search}
           type='text'
           onChange={(e) => setSearch(e.target.value)}
         />
         <button
           onClick={handleSubmit}
-          className='w-40 ml-4 py-3 px-5 rounded-full bg-lime-500 hover:cursor-pointer hover:bg-lime-600'
+          className='w-40 ml-10 py-3 px-5 rounded-full bg-lime-500 hover:cursor-pointer hover:bg-lime-600'
         >
           Add Unis
         </button>
         <Table hoverable className='w-[90%] mx-auto border-lg dark'>
           <Table.Head>
             <Table.HeadCell className='!p-4'>
-              {/* <Checkbox /> */}
             </Table.HeadCell>
             {headers.map((row) => {
               return (
@@ -196,7 +195,7 @@ function Unis () {
               )
             })}
             {user?.role.includes('admin') && (
-              <Table.HeadCell>
+              <Table.HeadCell className='text-white'>
                 Actions
               </Table.HeadCell>
             )}

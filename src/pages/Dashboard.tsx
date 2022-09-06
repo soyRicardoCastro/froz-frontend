@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <Layout title={`Welcome back ${user?.firstName}`} category='User'>
       <div className='w-[90%] mx-auto gap-3 h-full grid grid-cols-2'>
-        <div className='h-[220px] shadow-lg rounded-2xl w-full flex flex-col gap-2 bg-slate-500 p-5'>
+        <div className='h-[230px] shadow-lg rounded-2xl w-full flex flex-col gap-2 bg-slate-500 p-5'>
           <h2 className='text-3xl text-white'>
             {user?.firstName} {user?.lastName}
           </h2>
