@@ -14,21 +14,77 @@ function Tasks () {
       error={error}
     >
       <div className='w-11/12 mx-auto grid grid-cols-2 gap-1'>
-        {tasks?.map((task, i) => (
-          <div
-            className='w-full h-36 gap-1 flex flex-col bg-gray-500 p-4 overflow-hidden rounded-md'
-            key={i}
-          >
-            <p className='text-md text-gray-200'>{task.name}</p>
-            <p className='text-xs text-gray-300'>
-              {task.short.substring(0, 80)}
-            </p>
-            <Link to={`/tasks/${task._id}`}>
-              <button className='py-2 px-4 rounded-full text-white bg-lime-500'>
-                Read more
-              </button>
-            </Link>
+        <article className='border-t-4 border-blue-400 w-full justify-between h-56 bg-gray-500 flex flex-col p-4 rounded-xl'>
+          <header className='bg-gradient-to-r from-cyan-500 to-blue-500 h-20 flex justify-center items-center'>
+            <h3 className='tracking-wide text-xl text-white uppercase font-bold m-auto text-center'>program essentials</h3>
+          </header>
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </p> 
           </div>
+          <footer className='flex justify-end align-center'>
+            <Link to='/' className='text-xs px-3 py-2 bg-lime-400 rounded-xl'>Open module</Link>
+          </footer>
+        </article>
+
+        <article className='border-t-4 border-blue-400 w-full justify-between h-56 bg-gray-500 flex flex-col p-4 rounded-xl'>
+          <header className='bg-gradient-to-r from-cyan-500 to-blue-500 h-20 flex justify-center items-center'>
+            <h3 className='tracking-wide text-xl text-white uppercase font-bold m-auto text-center'>program essentials</h3>
+          </header>
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </p> 
+          </div>
+          <footer className='flex justify-end align-center'>
+            <Link to='/' className='text-xs px-3 py-2 bg-lime-400 rounded-xl'>Open module</Link>
+          </footer>
+        </article>
+
+        <article className='border-t-4 border-blue-400 w-full justify-between h-56 bg-gray-500 flex flex-col p-4 rounded-xl'>
+          <header className='bg-gradient-to-r from-cyan-500 to-blue-500 h-20 flex justify-center items-center'>
+            <h3 className='tracking-wide text-xl text-white uppercase font-bold m-auto text-center'>program essentials</h3>
+          </header>
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </p> 
+          </div>
+          <footer className='flex justify-end align-center'>
+            <Link to='/' className='text-xs px-3 py-2 bg-lime-400 rounded-xl'>Open module</Link>
+          </footer>
+        </article>
+
+        <article className='border-t-4 border-blue-400 w-full justify-between h-56 bg-gray-500 flex flex-col p-4 rounded-xl'>
+          <header className='bg-gradient-to-r from-cyan-500 to-blue-500 h-20 flex justify-center items-center'>
+            <h3 className='tracking-wide text-xl text-white uppercase font-bold m-auto text-center'>program essentials</h3>
+          </header>
+          <div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </p> 
+          </div>
+          <footer className='flex justify-end align-center'>
+            <Link to='/' className='text-xs px-3 py-2 bg-lime-400 rounded-xl'>Open module</Link>
+          </footer>
+        </article>
+
+
+        {tasks?.map((task, i) => (
+        <article key={task._id} className='border-t-4 border-blue-400 w-full justify-between h-56 bg-gray-500 flex flex-col p-4 rounded-xl'>
+          <header className='bg-gradient-to-r from-cyan-500 to-blue-500 h-20 flex justify-center items-center'>
+            <h3 className='tracking-wide text-xl text-white uppercase font-bold m-auto text-center'>{task.name}</h3>
+          </header>
+          <div>
+            <p>
+              {task.short.substring(0, 80)} 
+            </p> 
+          </div>
+          <footer className='flex justify-end align-center'>
+            <Link to={`/tasks/${task._id}`} className='text-xs px-3 py-2 bg-lime-400 rounded-xl'>Open module</Link>
+          </footer>
+        </article>
         ))}
       </div>
     </Layout>

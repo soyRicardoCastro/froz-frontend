@@ -1,6 +1,7 @@
 import {
   UsersIcon,
   UserAddIcon,
+  UserIcon,
   AcademicCapIcon,
   CollectionIcon,
   UserCircleIcon,
@@ -62,6 +63,16 @@ export const sidebarAdminRoutes = [
         label: 'Create University',
         path: '/create/university',
         icon: <AcademicCapIcon className={s} />
+      },
+      {
+        label: 'My College Fit',
+        path: '/user/college-fit',
+        icon: <AcademicCapIcon className={s} />
+      },
+      {
+        label: 'Get to know you',
+        path: '/user/get-to-know-you',
+        icon: <UserIcon className={s} />
       }
     ]
   },
@@ -115,7 +126,18 @@ export const sidebarUserRoutes = [
         label: 'My Universities',
         path: '/user/unis',
         icon: <AcademicCapIcon className={s} />
+      },
+      {
+        label: 'My College Fit',
+        path: '/user/college-fit',
+        icon: <AcademicCapIcon className={s} />
+      },
+      {
+        label: 'Get to know you',
+        path: '/user/get-to-know-you',
+        icon: <UserIcon className={s} />
       }
+
     ]
   },
   {

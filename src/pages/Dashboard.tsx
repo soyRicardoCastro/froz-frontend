@@ -46,7 +46,7 @@ const Dashboard = () => {
           <LibraryIcon className='h-[60px] w-[60px] text-white' />
           <Link to='/user/unis' className='text-white'>My Universities</Link>
         </div>
-        <div className='h-[100px] w-full p-4 rounded-md bg-red-400 flex items-center justify-start text-2xl font-bold text-white hover:cursor-pointer'>
+        <div className='h-[100px] w-full p-4 ro nded-md bg-red-400 flex items-center justify-start text-2xl font-bold text-white hover:cursor-pointer'>
           <ArchiveIcon className='h-[60px] w-[60px] text-white' />
           <Link to='/tasks' className='text-white'>Tasks</Link>
         </div>

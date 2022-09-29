@@ -1,15 +1,15 @@
 import { Sidebar, Header, Loader, Footer } from '.'
-// * Testing UI without unnecesary nav
+
 interface Props {
   body: {
-    children: JSX.Element
+    children: JSX.Element | JSX.Element[]
     title: string
     category: string
     isFetching?: boolean
     isLoading?: boolean
     error?: unknown
   }
-}// 1065798812
+}
 
 function Layout ({
   children,

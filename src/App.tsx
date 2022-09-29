@@ -17,11 +17,13 @@ import {
   Dashboard,
   SendMessages,
   CreateTask,
+  Calendar,
+  CollegeFit,
   EditUni
 } from './pages'
 import { Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import { RequireAuth } from './components'
+import { RequireAuth, MultiForm } from './components'
 
 function App () {
   return (
@@ -45,6 +47,7 @@ function App () {
         <Route path='/login' element={<Login />} />
         <Route path='/unauthorized' element={<Unauthorized />} />
         <Route path='/*' element={<NotFound />} />
+        <Route path='/calendar' element={<Calendar />} />
 
         {/* Admin Routes  */}
         <Route element={<RequireAuth allowedRoles={['admin', 'dev']} />}>
@@ -80,6 +83,8 @@ function App () {
           <Route path='/tasks' element={<Tasks />} />
           <Route path='/tasks/:id' element={<Task />} />
           <Route path='/sendMessages' element={<SendMessages />} />
+          <Route path='/user/college-fit' element={<CollegeFit />} />
+          <Route path='/user/get-to-know-you' element={<MultiForm />} />
         </Route>
       </Routes>
     </div>

@@ -59,12 +59,34 @@ export interface User {
     address: string
     gender: string
     universities?: Array<University['body']>
+    questions?: CollegeFit
+    schedule?: UserSchedule
     completedTask: number
     role: Role[]
     createdAt: Date
     updatedAt: Date
     __v: number
   }
+}
+
+export interface UserSchedule {
+  body: {
+    xd: null
+  }
+}
+
+export interface CollegeFit {
+  ask1: string
+  ask2: string
+  ask3: string
+  ask4: string
+  ask5: string
+  ask6: Array<string>
+  ask7: string
+  ask8: string
+  ask9: string
+  ask10: string
+  ask11: string
 }
 
 interface Task {

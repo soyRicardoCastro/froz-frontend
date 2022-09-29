@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
 import useStore from '../store'
 import { SidebarItem } from './SidebarItem'
 import { sidebarAdminRoutes, sidebarUserRoutes } from '../constants/routes'

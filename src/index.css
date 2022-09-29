@@ -1,3 +1,4 @@
+/*@import "./material.css";*/
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
@@ -16,3 +17,4 @@
 body {
   background-color: rgb(51, 65, 85);
 }
+
