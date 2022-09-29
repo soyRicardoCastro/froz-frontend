@@ -17,7 +17,6 @@ import {
   Dashboard,
   SendMessages,
   CreateTask,
-  Calendar,
   CollegeFit,
   EditUni
 } from './pages'
@@ -47,7 +46,6 @@ function App () {
         <Route path='/login' element={<Login />} />
         <Route path='/unauthorized' element={<Unauthorized />} />
         <Route path='/*' element={<NotFound />} />
-        <Route path='/calendar' element={<Calendar />} />
 
         {/* Admin Routes  */}
         <Route element={<RequireAuth allowedRoles={['admin', 'dev']} />}>
