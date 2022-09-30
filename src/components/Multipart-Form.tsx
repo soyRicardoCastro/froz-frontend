@@ -4,7 +4,6 @@ import { CollegeFit } from '../types'
 import { states } from '../constants/states'
 import { asks } from '../constants/asks'
 import { toast } from 'react-toastify'
-import { useUser } from '../query'
 import axios from '../services/axios'
 
 import useStore from '../store'
@@ -26,8 +25,6 @@ export default function MultiForm () {
   })
 
   const { user, setUser } = useStore()
-  const id = user?._id as string
-  const { data: userData, refetch } = useUser(id)
 
   const [checkedState, setCheckedState] = useState(
     new Array(states.length).fill(false)
@@ -46,9 +43,14 @@ export default function MultiForm () {
         success: 'Successfully sended'
       })
 
-      await refetch()
-      if (!userData) return
-      setUser(userData)
+      await toast.promise(async () => {
+        const data = await axios.get(`/api/users/${user?._id}`)
+        setUser(data)
+      }, {
+        pending: "Updating user",
+        error: "Error",
+        success: "User updated Successfully"
+      })
     } catch (e: any) {
       console.error(e)
       toast.error(e)
