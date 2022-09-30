@@ -5,6 +5,7 @@ import { states } from '../constants/states'
 import { asks } from '../constants/asks'
 import { toast } from 'react-toastify'
 import axios from '../services/axios'
+import { getUser } from '../services'
 
 import useStore from '../store'
 
@@ -44,7 +45,8 @@ export default function MultiForm () {
       })
 
       await toast.promise(async () => {
-        const data = await axios.get(`/api/users/${user?._id}`)
+        const data = await getUser(user?._id)
+
         setUser(data)
       }, {
         pending: "Updating user",
