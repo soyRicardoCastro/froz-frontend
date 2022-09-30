@@ -45,7 +45,7 @@ export default function MultiForm () {
       })
 
       await toast.promise(async () => {
-        const id = user._id as string
+        const id = user?._id as string
         const data = await getUser(id)
 
         setUser(data)
