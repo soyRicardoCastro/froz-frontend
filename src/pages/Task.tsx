@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import useStore from '../store'
 import axios from '../services/axios'
@@ -14,10 +14,10 @@ function Task () {
 
   const { data: task, error, isLoading, isFetching } = useTask(id)
 
-    if (!task) {
-      toast.warn('Task not found')
-      return nav('/tasks')
-    }
+  if (!task) {
+    toast.warn('Task not found')
+    return <Navigate to="/tasks" replace={true} />
+  }
 
   const handleClick = async (id: string) => {  
     await toast.promise(async () => await axios.delete(`/api/tasks/${id}`), {

@@ -11,7 +11,7 @@ import useStore from '../store'
 
 export default function MultiForm () {
   const [step, setStep] = useState<number>(0)
-  const [data, setData] = useState<CollegeFit['body']>({
+  const [data, setData] = useState<CollegeFit>({
     ask1: '',
     ask2: '',
     ask3: '',
@@ -68,7 +68,7 @@ export default function MultiForm () {
       return data.ask6.push(state)
     
     if (updatedCheckedState[position] === false) {
-      const s = data.ask6.filter(s => s !== state)
+      const s: Array<string> = data.ask6.filter((s: string) => s !== state[position])
 
       data.ask6 = s
     }
