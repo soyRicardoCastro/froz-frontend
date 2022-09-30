@@ -17,6 +17,7 @@ import {
   Dashboard,
   SendMessages,
   CreateTask,
+  Calendar,
   CollegeFit,
   EditUni
 } from './pages'
@@ -79,7 +80,7 @@ function App () {
           <Route path='/unis' element={<Unis />} />
           <Route path='/unis/:id' element={<Uni />} />
           <Route path='/tasks' element={<Tasks />} />
-          <Route path='/tasks/:id' element={<Task />} />
+          <Route path='/user/college-planer' element={<Calendar />} />
           <Route path='/sendMessages' element={<SendMessages />} />
           <Route path='/user/college-fit' element={<CollegeFit />} />
           <Route path='/user/get-to-know-you' element={<MultiForm />} />

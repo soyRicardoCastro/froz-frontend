@@ -5,7 +5,8 @@ import {
   AcademicCapIcon,
   CollectionIcon,
   UserCircleIcon,
-  TableIcon
+  TableIcon,
+  CalendarIcon
 } from '@heroicons/react/outline'
 
 const s = 'h-5 w-5 text-gray-400 mr-2 group-hover:text-white'
@@ -93,6 +94,11 @@ export const sidebarAdminRoutes = [
         label: 'Send Messages',
         path: '/sendMessages',
         icon: <CollectionIcon className={s} />
+      },
+      {
+        label: 'College Planer',
+        path: '/user/college-planer',
+        icon: <CalendarIcon className={s} /> 
       }
     ]
   }
@@ -151,6 +157,11 @@ export const sidebarUserRoutes = [
       {
         label: 'Send Messages',
         path: '/sendMessages',
+        icon: <CollectionIcon className={s} />
+      },
+      {
+        label: 'College Planer',
+        path: '/user/college-planer',
         icon: <CollectionIcon className={s} />
       }
     ]

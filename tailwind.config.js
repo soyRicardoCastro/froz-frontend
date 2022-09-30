@@ -5,7 +5,10 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      "1/5": "1fr 5fr",
+
+    }
   },
-  plugins: [require('flowbite/plugin')]
+  plugins: [require('flowbite/plugin'), require('@tailwindcss/forms')]
 }
