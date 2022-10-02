@@ -6,6 +6,11 @@ import {
 } from "react";
 import GlobalContext from "./GlobalContext";
 import dayjs from "dayjs";
+import { User } from '../types'
+import { AxiosResponse } from 'axios'
+import axios from '../services/axios'
+import useStore from '../store'
+import { useUser } from '../query'
 
 function savedEventsReducer(state: any, { type, payload }: { type: string, payload: any }) {
   switch (type) {
@@ -21,14 +26,18 @@ function savedEventsReducer(state: any, { type, payload }: { type: string, paylo
       throw new Error();
   }
 }
-function initEvents() {
-  const storageEvents = localStorage.getItem("savedEvents");
-  const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
-  console.log(parsedEvents)
-  return parsedEvents;
-}
 
-export default function ContextWrapper({children}: { children: JSX.Element | JSX.Element[] }) {
+export default function ContextWrapper({ children }: { children: JSX.Element | JSX.Element[] }) {
+  const { user, setUser } = useStore()
+  function initEvents() {
+  //const storageEvents = localStorage.getItem("savedEvents");
+  //const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
+  //console.log(parsedEvents)
+    const events = user?.schedule ? user.schedule : []
+    return events;
+  }
+  const id = user?._id as string
+  const { data: userData, refetch } = useUser(id)
   const [monthIndex, setMonthIndex] = useState(dayjs().month());
   const [smallCalendarMonth, setSmallCalendarMonth] = useState<any>(null);
   const [daySelected, setDaySelected] = useState(dayjs());
@@ -50,8 +59,16 @@ export default function ContextWrapper({children}: { children: JSX.Element | JSX
     );
   }, [savedEvents, labels]);
 
+  const updateSchedule = async () => {
+    await axios.put(`/api/users/schedule/${user?._id}`, savedEvents)
+    const { data }: AxiosResponse<User['body']> = await axios.get(`/api/users/${id}`)
+    if (data) setUser(data)
+    return
+  }
+
   useEffect(() => {
-    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    //localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    updateSchedule()
   }, [savedEvents]);
 
   useEffect(() => {

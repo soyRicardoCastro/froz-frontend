@@ -18,7 +18,7 @@ const Sidebar = () => {
       <div className='mt-[15px] overflow-x-hidden h-[85vh] sm:w-20 md:w-60 pb-16 m-auto'>
         {user?.role.includes('admin') ? (
           sidebarAdminRoutes.map((item, i) => (
-            <div key={i} className='mr-2'>
+            <div key={`sidebar-item-${i}`} className='mr-2'>
               <h3 className='mx-6 overflow-hidden mb-2 text-xs text-gray-100 uppercase tracking-widest'>
                 {item.title}
               </h3>
@@ -26,7 +26,7 @@ const Sidebar = () => {
                 {item.links.map((link, i) => (
                   <SidebarItem
                     {...link}
-                    key={i}
+                    key={`item-${i}`}
                   />
                 ))}
               </div>
@@ -34,14 +34,14 @@ const Sidebar = () => {
           ))
         ) : (
           sidebarUserRoutes.map((item, i) => (
-            <div key={i} className='mr-2'>
+            <div key={`sidebar-item-${i}`} className='mr-2'>
               <h3 className='mx-6 overflow-hidden mb-2 text-xs text-gray-100 uppercase tracking-widest'>
                 {item.title}
               </h3>
               <div>
                 {item.links.map((link, i) => (
                   <SidebarItem
-                    key={i}
+                    key={`item-${i}`}
                     {...link}
                   />
                 ))}

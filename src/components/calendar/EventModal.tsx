@@ -49,7 +49,6 @@ export default function EventModal() {
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-slate-700 rounded-lg shadow-2xl w-[60%]" onSubmit={handleSubmit}>
         <header className="bg-gray-900 px-4 py-2 flex justify-between items-center">
-          {/*<TrashIcon className='text-gray-400 w-5 h-5' />*/}
           <div className='flex w-full justify-between'>
             {selectedEvent && (
               <span

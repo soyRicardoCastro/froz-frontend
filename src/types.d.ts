@@ -60,7 +60,7 @@ export interface User {
     gender: string
     universities?: Array<University['body']>
     questions?: CollegeFit
-    schedule?: UserSchedule
+    schedule: Array<UserSchedule['body']>
     completedTask: number
     role: Role[]
     createdAt: Date
@@ -71,7 +71,12 @@ export interface User {
 
 export interface UserSchedule {
   body: {
-    xd: null
+    id: string
+    title: string
+    description: string
+    label: string
+    day: string
+
   }
 }
 

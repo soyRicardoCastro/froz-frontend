@@ -13,8 +13,6 @@ function Calendar () {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
 
-  useEffect(() => console.log('...' + showEventModal), [showEventModal])
-
   return (
     <React.Fragment>
       {showEventModal && <EventModal />}
