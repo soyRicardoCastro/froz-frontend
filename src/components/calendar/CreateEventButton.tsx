@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import { PlusIcon } from '@heroicons/react/outline'
 export default function CreateEventButton() {
@@ -8,7 +8,7 @@ export default function CreateEventButton() {
       onClick={() => setShowEventModal(true)}
       className="border p-2 rounded-full flex items-center shadow-md hover:shadow-2xl"
     >
-      <PlusIcon className="pl-3 pr-7 text-gray-200 w-7 h-7" /> Create
+      <PlusIcon className="text-gray-200 w-5 h-5" /> Create
     </button>
   );
 }

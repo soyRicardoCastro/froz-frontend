@@ -1,14 +1,11 @@
 import React, { useContext, useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
-import { TrashIcon, StopIcon } from '@heroicons/react/outline'
+import { TrashIcon, XIcon, CheckIcon, BookmarkIcon, CalendarIcon, BellIcon } from '@heroicons/react/outline'
 
 const labelsClasses = [
-  "indigo",
-  "gray",
-  "green",
+  "slate",
+  "lime",
   "blue",
-  "red",
-  "purple",
 ];
 
 export default function EventModal() {
@@ -31,7 +28,7 @@ export default function EventModal() {
       : labelsClasses[0]
   );
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const calendarEvent = {
       title,
@@ -50,10 +47,10 @@ export default function EventModal() {
   }
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
-      <form className="bg-white rounded-lg shadow-2xl w-1/4">
-        <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
-          <TrashIcon className='text-gray-400 w-5 h-5' />
-          <div>
+      <form className="bg-slate-700 rounded-lg shadow-2xl w-[60%]" onSubmit={handleSubmit}>
+        <header className="bg-gray-900 px-4 py-2 flex justify-between items-center">
+          {/*<TrashIcon className='text-gray-400 w-5 h-5' />*/}
+          <div className='flex w-full justify-between'>
             {selectedEvent && (
               <span
                 onClick={() => {
@@ -63,13 +60,12 @@ export default function EventModal() {
                   });
                   setShowEventModal(false);
                 }}
-                className="material-icons-outlined text-gray-400 cursor-pointer"
               >
-                <TrashIcon className='text-gray-500 w-5 h-5' />
+                <TrashIcon className='text-gray-200 w-5 h-5' />
               </span>
             )}
             <button onClick={() => setShowEventModal(false)}>
-              <StopIcon className='text-gray-500 w-5 h-5' />
+              <XIcon className='text-gray-200 w-5 h-5' />
             </button>
           </div>
         </header>
@@ -82,15 +78,16 @@ export default function EventModal() {
               placeholder="Add title"
               value={title}
               required
+              autoFocus
               className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
-              schedule
+            <span className="text-gray-400">
+              <BellIcon className="w-5 h-5" />
             </span>
             <p>{daySelected.format("dddd, MMMM DD")}</p>
-            <span className="material-icons-outlined text-gray-400">
-              segment
+            <span className="text-gray-400">
+              <CalendarIcon className='w-5 h-5' />
             </span>
             <input
               type="text"
@@ -101,8 +98,8 @@ export default function EventModal() {
               className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
               onChange={(e) => setDescription(e.target.value)}
             />
-            <span className="material-icons-outlined text-gray-400">
-              bookmark_border
+            <span className="text-gray-400">
+              <BookmarkIcon className='w-5 h-5' />
             </span>
             <div className="flex gap-x-2">
               {labelsClasses.map((lblClass, i) => (
@@ -112,8 +109,8 @@ export default function EventModal() {
                   className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
                 >
                   {selectedLabel === lblClass && (
-                    <span className="material-icons-outlined text-white text-sm">
-                      check
+                    <span className="text-white text-sm">
+                      <CheckIcon className='w-5 h-5' />
                     </span>
                   )}
                 </span>
@@ -124,7 +121,6 @@ export default function EventModal() {
         <footer className="flex justify-end border-t p-3 mt-5">
           <button
             type="submit"
-            onClick={handleSubmit}
             className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
           >
             Save

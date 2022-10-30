@@ -54,10 +54,10 @@ export default function SmallCalendar() {
         </p>
         <div>
           <button onClick={handlePrevMonth}>
-            <ChevronLeftIcon className='text-gray-600 mx-2 h-5 w-5' />
+            <ChevronLeftIcon className='text-gray-200 mx-2 h-5 w-5' />
           </button>
           <button onClick={handleNextMonth}>
-            <ChevronRightIcon className='text-gray-600 mx-2 h-5 w-5' />
+            <ChevronRightIcon className='text-gray-200 mx-2 h-5 w-5' />
           </button>
         </div>
       </header>

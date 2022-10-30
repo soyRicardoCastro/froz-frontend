@@ -45,11 +45,11 @@ export default function Day({ day, rowIdx }) {
           setShowEventModal(true);
         }}
       >
-        {dayEvents.map((evt, idx) => (
+        {dayEvents.map((evt: any, idx) => (
           <div
             key={idx}
             onClick={() => setSelectedEvent(evt)}
-            className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+            className={`bg-${evt.label}-500 w-full p-1 mr-3 text-white text-sm rounded mb-1 truncate`}
           >
             {evt.title}
           </div>
