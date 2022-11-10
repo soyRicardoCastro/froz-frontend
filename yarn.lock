@@ -2527,9 +2527,9 @@
     "is-date-object" "^1.0.1"
     "is-symbol" "^1.0.2"
 
-"esbuild-linux-32@0.15.10":
-  "integrity" "sha512-guXrwSYFAvNkuQ39FNeV4sNkNms1bLlA5vF1H0cazZBOLdLFIny6BhT+TUbK/hdByMQhtWQ5jI9VAmPKbVPu1w=="
-  "resolved" "https://registry.npmjs.org/esbuild-linux-32/-/esbuild-linux-32-0.15.10.tgz"
+"esbuild-windows-64@0.15.10":
+  "integrity" "sha512-2H0gdsyHi5x+8lbng3hLbxDWR7mKHWh5BXZGKVG830KUmXOOWFE2YKJ4tHRkejRduOGDrBvHBriYsGtmTv3ntA=="
+  "resolved" "https://registry.npmjs.org/esbuild-windows-64/-/esbuild-windows-64-0.15.10.tgz"
   "version" "0.15.10"
 
 "esbuild@^0.15.6":

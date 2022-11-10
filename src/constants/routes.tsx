@@ -1,12 +1,5 @@
 import {
-  UsersIcon,
-  UserAddIcon,
-  UserIcon,
-  AcademicCapIcon,
-  CollectionIcon,
-  UserCircleIcon,
-  TableIcon,
-  CalendarIcon
+  AcademicCapIcon, CalendarIcon, CollectionIcon, TableIcon, UserAddIcon, UserCircleIcon, UserIcon, UsersIcon
 } from '@heroicons/react/outline'
 
 const s = 'h-5 w-5 text-gray-400 mr-2 group-hover:text-white'

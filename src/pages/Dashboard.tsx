@@ -1,12 +1,10 @@
+import {
+  AcademicCapIcon, ArchiveIcon, LibraryIcon,
+  MailIcon
+} from '@heroicons/react/outline'
+import { Link } from 'react-router-dom'
 import { Layout } from '../components'
 import useStore from '../store'
-import { Link } from 'react-router-dom'
-import {
-  AcademicCapIcon,
-  LibraryIcon,
-  MailIcon,
-  ArchiveIcon
-} from '@heroicons/react/outline'
 
 const Dashboard = () => {
   const { user } = useStore()

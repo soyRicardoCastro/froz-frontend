@@ -1,12 +1,21 @@
-import { NavLink } from "react-router-dom"
-import useStore from '../store'
-import { SidebarItem } from './SidebarItem'
-import { sidebarAdminRoutes, sidebarUserRoutes } from '../constants/routes'
+import { NavLink, useNavigate } from "react-router-dom"
 import logo from '../assets/logo.png'
+import { sidebarAdminRoutes, sidebarUserRoutes } from '../constants/routes'
+import useStore from '../store'
+import LogOutIcon from "./LogOutIcon"
+import { SidebarItem } from './SidebarItem'
+
 
 const Sidebar = () => {
   const { user } = useStore()
-
+  const { removeUser } = useStore()
+  const nav = useNavigate()
+  
+  const handleClick = () => {
+    removeUser()
+    nav('/')
+  }
+  
   return (
     <div className='relative w-[262px] bg-slate-800'>
       <div className='py-4 px-6'>
@@ -49,6 +58,12 @@ const Sidebar = () => {
             </div>
           ))
         )}
+        <div>
+          <button className='flex w-[220px] gap-2 items-center px-6 py-2.5 bg-gray-500 text-gray-200 hover:bg-slate-400 hover:text-white group rounded-xl ml-2 mb-1 transition' onClick={handleClick}>
+            <LogOutIcon/>
+            Log Out
+          </button>
+        </div>
       </div>
     </div>
   )
